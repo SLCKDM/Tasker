@@ -1,0 +1,10 @@
+
+<body>
+    <title> Tasks </title>
+    <h1> Tasks </h1>
+    <ol>
+    {% for task in tasks %}
+        <li><a href="{% url 'TasksApp:detail' task.uuid %}">{{ task.title }}</a></li>
+    {% endfor %}
+    </ol>
+</body>
