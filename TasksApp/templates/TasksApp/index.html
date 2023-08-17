@@ -1,10 +1,29 @@
 
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <style>
+        body {font-family: 'Raleway';}
+        .container {
+            width: fit-content;
+            margin-inline: auto;
+            margin-top: 5%;
+        }
+    </style>
+
+</head>
 <body>
     <title> Tasks </title>
-    <h1> Tasks </h1>
-    <ol>
-    {% for task in tasks %}
-        <li><a href="{% url 'TasksApp:detail' task.uuid %}">{{ task.title }}</a></li>
-    {% endfor %}
-    </ol>
+    <div class="container">
+        <h1> Tasks </h1>
+        {% if tasks %}
+            <ol>
+                {% for task in tasks %}
+                    <li><a href="{% url 'TasksApp:detail' task.uuid %}">{{ task.title }}</a></li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>No tasks</p>
+        {% endif %}
+    </div>
 </body>

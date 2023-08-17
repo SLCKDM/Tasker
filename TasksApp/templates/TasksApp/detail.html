@@ -1,5 +1,20 @@
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
     <style>
+        body {font-family: 'Raleway';}
+        .container {
+            width: fit-content;
+            margin-inline: auto;
+        }
+        fieldset {border-color: deepskyblue;}
+        .check-list-item {display: inline;}
+        legend {font-weight: bold; font-size: 19px;}
+        fieldset.inner {
+            border: solid black 1px;
+            border-top: none;
+            border-bottom: none;
+        }
         .bar-left {
             display: inline-block;
             vertical-align: top;
@@ -11,69 +26,87 @@
             margin-right: 0px;
         }
         .timings {
-            border: solid 1px grey;
-            border-radius: 33px;
+            display: inline-block;
             max-width: fit-content;
             padding-inline: 1%;
         }
         .task-description {
             display: inline-block;
-            border: solid 1px grey;
-            border-radius: 33px;
             max-width: fit-content;
             padding-inline: 1%;
         }
         li.cl-item {
             list-style-type: none;
+            display: inline;
+        }
+        #backLink {
+            display: inline;
         }
     </style>
 </head>
 
+<title style="display: inline;">{{ task.title }}</title>
 <body>
     <div class="container">
-        <title>{{ task.title }}</title>
-        <H1>{{ task.title }}</H1>
-        <div class="timings bar-left">
-            <p>
-                <div>Создано:</div><div>{{task.created}}</div>
-            </p>
-            <p>
-                <div>Обновлено:</div><div>{{task.updated}}</div>
-            </p>
-            <p>
-                <div>Срок:</div><div>{{task.deadline}}</div>
-            </p>
-            {% if task.done %}
-                <p>
-                    <div>Завершено:</div><div>{{task.done_dt}}</div>
-                </p>
-            {% else %}
-            <p>
-                <div>Не завершено</div>
-            </p>
-            {% endif %}
-        </div>
-        <fieldset class="task-description">
-            <legend><h3>Описание</h3></legend>
-            <div >{{task.description}}</div>
-        </fieldset>
+        <a style="font-size: 40px; text-decoration: none;" id="backLink" href="{% url 'TasksApp:index' %}"><</a>
+        <H1 style="display: inline-block">{{ task.title }}</H1>
+        <br>
         <div class="bar-right">
-            <div>Автор:</div><div>{{task.author}}</div>
-            <div>Исполнители:</div>{% for executor in task.executors.all %}<div>{{ executor }}</div>{% endfor %}
+            <div class="timings">
+                <fieldset>
+                    <legend>Даты</legend>
+                    <p>
+                        <div>Создано:</div><div>{{task.created}}</div>
+                    </p>
+                    <p>
+                        <div>Обновлено:</div><div>{{task.updated}}</div>
+                    </p>
+                    <p>
+                        <div>Срок:</div><div>{{task.deadline}}</div>
+                    </p>
+                </fieldset>
+                    {% if task.done %}
+                    <p>
+                        <div>Завершено:</div><div>{{task.done_dt}}</div>
+                    </p>
+                {% endif %}
+            </div>
+            <fieldset>
+                <legend>Участники</legend>
+                <div>Автор:</div><div>{{task.author}}</div>
+                <div>Исполнители:</div>{% for executor in task.executors.all %}<div>{{ executor }}</div>{% endfor %}
+            </fieldset>
         </div>
-        <!-- <p>
-            <div>sub_tasks:</div><div>{{task.sub_tasks}}</div>
-        </p> -->
-        {% if task.checklist_set.all %}
-            {% for checklist in task.checklist_set.all %}
-                <h3>Чек-лист: {{ checklist.name }}</h3>
-                <ul>
-                    {% for check_item in checklist.checklistitem_set.all %}
-                    <li class="cl-item">{{ check_item.text }} {% if check_item.done %} ✅ {% else %} ❌ {% endif %}</li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
-        {% endif %}
-    </div>
+        <div style="display: inline-block;">
+            <fieldset class="task-description bar-left">
+                <legend>Описание</legend>
+                <div >{{task.description}}</div>
+            </fieldset>
 
+            <!-- <p>
+                <div>sub_tasks:</div><div>{{task.sub_tasks}}</div>
+            </p> -->
+            <fieldset style="max-width: fit-content;">
+                <legend>Чек-листы</legend>
+
+                <div style="display: inline-block;">
+                    {% if task.checklist_set.all %}
+                        {% for checklist in task.checklist_set.all %}
+                            <fieldset class="inner">
+                            <legend>Чек-лист: {{ checklist.name }}</legend>
+                                {% for check_item in checklist.checklistitem_set.all %}
+                                    <div>
+                                        <input class="check-list-item" type="checkbox" {% if check_item.done %} checked {% endif %}>
+                                        <li class="cl-item">{{ check_item.text }}</li>
+                                    </div>
+                                {% endfor %}
+                            </fieldset>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+        </div>
+
+
+    </div>
 </body>
