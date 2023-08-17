@@ -143,7 +143,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "formatter": "verbose",
-            "filename": "Tasker/logs/.log",
+            "filename": (Path('logs') / '.log').absolute(),
         },
         "console": {
             "level": "INFO",
