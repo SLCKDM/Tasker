@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework',
     'TasksApp.apps.TasksappConfig',
     'Users.apps.UsersConfig',
     "debug_toolbar",
@@ -142,7 +143,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "formatter": "verbose",
-            "filename": "Tasker\logs\.log",
+            "filename": "Tasker/logs/.log",
         },
         "console": {
             "level": "INFO",
@@ -157,4 +158,12 @@ LOGGING = {
             "propagate": True,
         },
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
