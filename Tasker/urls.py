@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+app_name = 'Tasker'
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
-    path('tasks/', include('TasksApp.urls'))
+    path('tasks/', include('TasksApp.urls')),
+    path('profile/', include('Users.urls')),
 ]

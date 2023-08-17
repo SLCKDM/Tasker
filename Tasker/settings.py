@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'TasksApp.apps.TasksappConfig',
+    'Users.apps.UsersConfig',
     "debug_toolbar",
 ]
 

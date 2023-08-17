@@ -1,0 +1,41 @@
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body {font-family: 'Raleway';}
+        .profile-container {
+            width: fit-content;
+            max-width: 900px;
+            margin-inline: auto;
+            margin-top: 15%
+        }
+        fieldset {border-color: deepskyblue;}
+        .profileField, label {display: inline-block;}
+        .profile-field-row {margin-top: 6px;}
+        .title {font-size: 20px; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <fieldset class="profile-container">
+            <legend class="title">Профиль {{ profile.username }}</legend>
+            <div class="profile-field-row">
+                <label for="usernameField">Логин:</label>
+                <div class="profileField" id="usernameField">{{ profile.username }}</div>
+            </div>
+            <div class="profile-field-row">
+                <label for="fnameField">Имя:</label>
+                <div class="profileField" id="fnameField">{{ profile.f_name }}</div>
+            </div>
+            <div class="profile-field-row">
+                <label for="lnameField">Фамилия:</label>
+                <div class="profileField" id="lnameField">{{ profile.l_name }}</div>
+            </div>
+            <div class="profile-field-row">
+                <label for="grupField">Группа:</label>
+                <div class="profileField" id="grupField">{{ profile.group }}</div>
+            </div>
+
+        </fieldset>
+
+    </div>
+</body>

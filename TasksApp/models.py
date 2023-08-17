@@ -1,27 +1,12 @@
-from django.db import models
-from django.contrib import admin
-from django.contrib.auth.models import User, Group
 import uuid
+
+from django.db import models
+from django.contrib.auth.models import User, Group
+
+from Users.models import Profile
 
 # Create your models here.
 
-class Profile(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
-                            editable=False, unique=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    f_name = models.CharField(max_length=100)
-    l_name = models.CharField(max_length=100)
-    group = models.OneToOneField(Group, on_delete=models.SET_NULL, null=True,
-                                 blank=True)
-
-    def username(self):
-        return self.user.username
-
-    def __repr__(self):
-        return f'<Profile {self.uuid}>'
-
-    def __str__(self) -> str:
-        return f'{self.user.username}'
 
 
 class Task(models.Model):

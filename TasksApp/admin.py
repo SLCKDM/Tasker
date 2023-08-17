@@ -15,10 +15,6 @@ class CheckListsElementsStack(admin.TabularInline):
     extra = 0
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['username', 'f_name', 'l_name', 'group']
-    list_filter = ['group']
-    # search_fields = ['username']
 
 
 class TaskAdmin(admin.ModelAdmin):
@@ -45,7 +41,6 @@ class CheckListAdmin(admin.ModelAdmin):
 class CheckListItemAdmin(admin.ModelAdmin):
     list_display = ['text', 'done', 'check_list']
 
-admin.site.register(models.Profile, ProfileAdmin)
 admin.site.register(models.Task, TaskAdmin)
 admin.site.register(models.CheckList, CheckListAdmin)
 admin.site.register(models.CheckListItem, CheckListItemAdmin)
