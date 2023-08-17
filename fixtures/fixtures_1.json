@@ -1,0 +1,843 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2023-08-17T20:45:01.946Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "1",
+        "object_repr": "admins",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2023-08-17T20:45:03.434Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "0e5146b8-58a0-49a0-982f-7a945eed8a75",
+        "object_repr": "root",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2023-08-17T20:57:56.964Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5bb24ba8-5f85-4e54-9cb7-56d711489abd",
+        "object_repr": "Создать сайт \"Tasker\"",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2023-08-17T20:59:55.863Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed",
+        "object_repr": "Tasker: upgrade",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"check list\", \"object\": \"Celery\"}}, {\"added\": {\"name\": \"check list\", \"object\": \"DRF\"}}, {\"added\": {\"name\": \"check list\", \"object\": \"Redis\"}}, {\"added\": {\"name\": \"check list\", \"object\": \"RabbitMQ\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2023-08-17T21:00:15.212Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "c868cb28-7768-4695-b6aa-ca72610a8a8b",
+        "object_repr": "Redis",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0438\\u0442\\u044c\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2023-08-17T21:00:28.249Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "a98de739-022a-4a47-bff9-ea9ceee2ed6a",
+        "object_repr": "DRF",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0438\\u0442\\u044c\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2023-08-17T21:00:37.392Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "85fae90e-7c5c-467d-832c-3c8cd559ab17",
+        "object_repr": "Celery",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0438\\u0442\\u044c\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2023-08-17T21:01:08.388Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2cf5eaeb-c43d-4fa7-b532-7c5891d5dabc",
+        "object_repr": "RabbitMQ",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0438\\u0442\\u044c\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2023-08-17T21:02:08.690Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5bb24ba8-5f85-4e54-9cb7-56d711489abd",
+        "object_repr": "Создать сайт \"Tasker\"",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list\", \"object\": \"\\u0414\\u043e\\u0431\\u0430\\u0432\\u0438\\u0442\\u044c \\u0438\\u043d\\u0441\\u0442\\u0440\\u0443\\u043c\\u0435\\u043d\\u0442\\u044b\"}}, {\"added\": {\"name\": \"check list\", \"object\": \"\\u0417\\u0430\\u0432\\u0435\\u0440\\u0448\\u0438\\u0442\\u044c \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2023-08-17T21:02:17.693Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "b81182b6-a4d2-49dc-9f54-317411797587",
+        "object_repr": "Завершить проект",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"check list item\", \"object\": \"\\u0417\\u0430\\u0432\\u0440\\u0435\\u0448\\u0438\\u0442\\u044c\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2023-08-17T21:02:53.501Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963",
+        "object_repr": "Апгрейды",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}, {\"added\": {\"name\": \"check list item\", \"object\": \"Redis\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"RabbitMQ\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"Celery\"}}, {\"added\": {\"name\": \"check list item\", \"object\": \"DRF\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2023-08-17T21:04:03.094Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5bb24ba8-5f85-4e54-9cb7-56d711489abd",
+        "object_repr": "Создать сайт \"Tasker\"",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add check list item",
+        "content_type": 7,
+        "codename": "add_checklistitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change check list item",
+        "content_type": 7,
+        "codename": "change_checklistitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete check list item",
+        "content_type": 7,
+        "codename": "delete_checklistitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view check list item",
+        "content_type": 7,
+        "codename": "view_checklistitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add task",
+        "content_type": 8,
+        "codename": "add_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change task",
+        "content_type": 8,
+        "codename": "change_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete task",
+        "content_type": 8,
+        "codename": "delete_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view task",
+        "content_type": 8,
+        "codename": "view_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add check list",
+        "content_type": 9,
+        "codename": "add_checklist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change check list",
+        "content_type": 9,
+        "codename": "change_checklist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete check list",
+        "content_type": 9,
+        "codename": "delete_checklist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view check list",
+        "content_type": 9,
+        "codename": "view_checklist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add profile",
+        "content_type": 10,
+        "codename": "add_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change profile",
+        "content_type": 10,
+        "codename": "change_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete profile",
+        "content_type": 10,
+        "codename": "delete_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view profile",
+        "content_type": 10,
+        "codename": "view_profile"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "admins",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$WhWtgSMVrYlIEmDBlOjbre$orA+WBkfV9FWDWdekm/mJS2WTseHkcVy3DD6VpCe/MY=",
+        "last_login": "2023-08-17T20:44:30.629Z",
+        "is_superuser": true,
+        "username": "root",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-08-17T20:44:25.160Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "TasksApp",
+        "model": "checklistitem"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "TasksApp",
+        "model": "task"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "TasksApp",
+        "model": "checklist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "Users",
+        "model": "profile"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "zlyy4ywrsu2e4vayoiq9edh3nvvu03if",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlm7ib-U9JzBWq9tHECOFCcV4u4QKQW0b2beSwTa1hq2npcwJXEWKE6_WyR-5LaDdKd2myXPbV2mKHdFHrTL65zy83K4fweVev3WoMjAQCMURwxUUCsaLLJGhpIZrUrKkAfvok_ISnOCMXoErU3Uzor3B9cbN1M:1qWjr4:mQrPPqcoL6AkpKMhyqs9EN5TdEoajLQopZzUByhzmLI",
+        "expire_date": "2023-08-31T20:44:30.771Z"
+    }
+},
+{
+    "model": "TasksApp.task",
+    "pk": "5bb24ba8-5f85-4e54-9cb7-56d711489abd",
+    "fields": {
+        "created": "2023-08-17T20:57:56.953Z",
+        "updated": "2023-08-17T20:57:56.953Z",
+        "deadline": "2023-08-31T00:00:00Z",
+        "title": "Создать сайт \"Tasker\"",
+        "description": "Проект веб-приложения для таск-менеджмента наподобие Trello, WEEEK, Wrike",
+        "author": "0e5146b8-58a0-49a0-982f-7a945eed8a75",
+        "done": false,
+        "done_dt": null,
+        "sub_tasks": [],
+        "executors": [
+            "0e5146b8-58a0-49a0-982f-7a945eed8a75"
+        ]
+    }
+},
+{
+    "model": "TasksApp.task",
+    "pk": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed",
+    "fields": {
+        "created": "2023-08-17T20:59:55.852Z",
+        "updated": "2023-08-17T20:59:55.852Z",
+        "deadline": "2023-08-24T12:00:00Z",
+        "title": "Tasker: upgrade",
+        "description": "Изучить и добавить инструменты из чек-листа",
+        "author": "0e5146b8-58a0-49a0-982f-7a945eed8a75",
+        "done": false,
+        "done_dt": null,
+        "sub_tasks": [],
+        "executors": [
+            "0e5146b8-58a0-49a0-982f-7a945eed8a75"
+        ]
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "0653faa0-fb33-47e2-98a8-9e0045a616ef",
+    "fields": {
+        "text": "Интегрировать",
+        "done": false,
+        "check_list": "85fae90e-7c5c-467d-832c-3c8cd559ab17"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "08793560-a114-4b0f-a063-82a2891b588a",
+    "fields": {
+        "text": "Изучить",
+        "done": false,
+        "check_list": "85fae90e-7c5c-467d-832c-3c8cd559ab17"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "0c12074b-3af2-4da0-b391-20a995efbe8d",
+    "fields": {
+        "text": "Интегрировать",
+        "done": false,
+        "check_list": "2cf5eaeb-c43d-4fa7-b532-7c5891d5dabc"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "353313e0-c937-4a23-88aa-202075527530",
+    "fields": {
+        "text": "Изучить",
+        "done": false,
+        "check_list": "2cf5eaeb-c43d-4fa7-b532-7c5891d5dabc"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "545eef78-1f51-43be-9371-f94819046c3a",
+    "fields": {
+        "text": "Изучить",
+        "done": false,
+        "check_list": "c868cb28-7768-4695-b6aa-ca72610a8a8b"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "622ac172-9af6-4c27-a38e-dc979065e581",
+    "fields": {
+        "text": "RabbitMQ",
+        "done": false,
+        "check_list": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "8254c92d-c98f-4831-b0cc-ac85a3283af1",
+    "fields": {
+        "text": "Интегрировать",
+        "done": false,
+        "check_list": "a98de739-022a-4a47-bff9-ea9ceee2ed6a"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "ad6e1473-bc5a-45b4-8af8-4780f4e6c926",
+    "fields": {
+        "text": "Интегрировать",
+        "done": false,
+        "check_list": "c868cb28-7768-4695-b6aa-ca72610a8a8b"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "d8cc8bb4-b1a1-4b3c-a77d-c459d8360cd7",
+    "fields": {
+        "text": "Celery",
+        "done": false,
+        "check_list": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "db53b640-21e3-44ea-b53d-2ee0346b9f37",
+    "fields": {
+        "text": "Заврешить",
+        "done": false,
+        "check_list": "b81182b6-a4d2-49dc-9f54-317411797587"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "e2011392-1565-45cd-9739-816912160018",
+    "fields": {
+        "text": "Redis",
+        "done": false,
+        "check_list": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "ec11c275-3dcd-4fc5-a4f7-02878be60c2b",
+    "fields": {
+        "text": "Изучить",
+        "done": false,
+        "check_list": "a98de739-022a-4a47-bff9-ea9ceee2ed6a"
+    }
+},
+{
+    "model": "TasksApp.checklistitem",
+    "pk": "ed8b3d0f-788c-4367-bec3-267a423906ae",
+    "fields": {
+        "text": "DRF",
+        "done": false,
+        "check_list": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "05516f4b-d8d3-4b81-8f09-77cd4ae3b963",
+    "fields": {
+        "name": "Апгрейды",
+        "task": "5bb24ba8-5f85-4e54-9cb7-56d711489abd"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "2cf5eaeb-c43d-4fa7-b532-7c5891d5dabc",
+    "fields": {
+        "name": "RabbitMQ",
+        "task": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "85fae90e-7c5c-467d-832c-3c8cd559ab17",
+    "fields": {
+        "name": "Celery",
+        "task": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "a98de739-022a-4a47-bff9-ea9ceee2ed6a",
+    "fields": {
+        "name": "DRF",
+        "task": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "b81182b6-a4d2-49dc-9f54-317411797587",
+    "fields": {
+        "name": "Завершить проект",
+        "task": "5bb24ba8-5f85-4e54-9cb7-56d711489abd"
+    }
+},
+{
+    "model": "TasksApp.checklist",
+    "pk": "c868cb28-7768-4695-b6aa-ca72610a8a8b",
+    "fields": {
+        "name": "Redis",
+        "task": "6f59e943-cd14-4d1e-8f1f-40fd2627e5ed"
+    }
+},
+{
+    "model": "Users.profile",
+    "pk": "0e5146b8-58a0-49a0-982f-7a945eed8a75",
+    "fields": {
+        "user": 1,
+        "f_name": "root",
+        "l_name": "root",
+        "group": 1
+    }
+}
+]
