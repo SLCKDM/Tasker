@@ -10,8 +10,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     f_name = models.CharField(max_length=100)
     l_name = models.CharField(max_length=100)
-    group = models.OneToOneField(Group, on_delete=models.SET_NULL, null=True,
-                                 blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True,
+                              blank=True)
 
     def username(self):
         return self.user.username
