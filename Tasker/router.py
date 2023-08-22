@@ -4,4 +4,5 @@ app_name = 'API'
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('', include('Users.router')),
+    path('', include('TasksApp.router')),
 ]
