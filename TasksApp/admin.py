@@ -15,8 +15,6 @@ class CheckListsElementsStack(admin.TabularInline):
     extra = 0
 
 
-
-
 class TaskAdmin(admin.ModelAdmin):
     inlines = [CheckListsStack]
     list_display = ['title', 'deadline', 'description', 'author', 'done',

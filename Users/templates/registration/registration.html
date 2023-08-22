@@ -1,0 +1,38 @@
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <style>
+        fieldset {
+            border-color: deepskyblue;
+            max-width: fit-content;
+            padding-top: 20px;
+            border-radius: 25px;
+        }
+        .container {
+            max-width: 20%;
+            margin-inline: auto;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <fieldset>
+            <legend>Регистрация</legend>
+            <form id="regForm" method="post">
+                {% csrf_token %}
+                <div><label>Логин</label><input name="username"></div>
+                <div><label>Пароль</label><input name="pass1"></div>
+                <div><label>Пароль, ещё раз</label><input name="pass2"></div>
+                <button type="submit">Зарегестрироваться</button>
+                {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                    <li style="color: red;">{{ error.message }}</li>
+                    {% endfor %}
+                </li>
+                {% endif %}
+            </form>
+        </fieldset>
+    </div>
+</body>

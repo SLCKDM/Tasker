@@ -8,8 +8,8 @@ class Profile(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
                             editable=False, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    f_name = models.CharField(max_length=100)
-    l_name = models.CharField(max_length=100)
+    f_name = models.CharField(max_length=100, blank=True)
+    l_name = models.CharField(max_length=100, blank=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True,
                               blank=True)
 

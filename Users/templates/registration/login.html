@@ -1,0 +1,74 @@
+<head>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <style>
+        body {
+            font-family: 'Raleway';
+        }
+
+        fieldset {
+            border-color: deepskyblue;
+            max-width: fit-content;
+            padding-top: 20px;
+        }
+
+        .container {
+            max-width: 20%;
+            margin-inline: auto;
+            margin-top: 20%;
+        }
+
+        .form-row {
+            margin-inline: auto;
+        }
+
+        legend {
+            margin-inline: auto;
+        }
+
+        #subbtn {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        .err-msg {
+            color:brown
+        }
+    </style>
+
+</head>
+
+<div class="container">
+    {% if form.errors %}
+    <p class="err-msg">Ваше имя пользователя или пароль не совпали. Пожалуйста, попробуйте снова.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>У вашей учетной записи нет доступа к этой странице. Чтобы продолжить,
+            пожалуйста, войдите в систему с учетной записью, у которой есть доступ.</p>
+    {% else %}
+        <p>Пожалуйста, войдите в систему, чтобы увидеть эту страницу.</p>
+    {% endif %}
+{% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <fieldset>
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="Войти">
+        <input type="hidden" name="next" value="{{ next }}">
+        </fieldset>
+    </form>
+
+    <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+</div>
+</body>

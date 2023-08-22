@@ -16,16 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-import Users.router
+
 app_name = 'Tasker'
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
-    path("__debug__/", include("debug_toolbar.urls")),
     path('tasks/', include('TasksApp.urls')),
     path('profile/', include('Users.urls')),
-
-    # DRF
-    path('api-auth/', include('rest_framework.urls')),
-    # path('api/', include(Users.router.router.urls)),
-    path('api/users/', include('Users.router')),
+    path("__debug__/", include("debug_toolbar.urls")),
+    path("api/", include("Tasker.router")),
 ]

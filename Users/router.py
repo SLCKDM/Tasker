@@ -1,13 +1,20 @@
-from django.urls import path
+
+from django.urls import path, include
 from rest_framework import routers
 from . import views
 
 
-# router = routers.DefaultRouter()
-# router.register(r'users', views.UserViewSet.as_view())
-# router.register(r'groups')
+# profiles_list = views.ProfileViewSet.as_view({'get': 'list'})
+# profiles_detail = views.ProfileViewSet.as_view({'get': 'retrieve'})
+
+# urlpatterns = format_suffix_patterns([
+#     path('', profiles_list, name='profile-list'),
+#     path('<str:pk>', profiles_detail, name='profile-detail'),
+# ])
+
+router = routers.DefaultRouter()
+router.register('profiles', views.ProfileViewSet, 'profile')
 
 urlpatterns = [
-    path('', views.UsersListViewSet.as_view()),
-    path('<str:pk>', views.UserView.as_view()),
+    path('', include(router.urls)),
 ]
