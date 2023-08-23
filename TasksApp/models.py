@@ -60,6 +60,7 @@ class CheckListItem(models.Model):
     def __repr__(self):
         return f'<CheckListItem {self.uuid}>'
 
+
 class CheckList(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
                             editable=False, unique=True)

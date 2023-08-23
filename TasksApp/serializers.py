@@ -3,6 +3,7 @@ from rest_framework import serializers
 from . import models
 import Users.models
 
+
 class CheckListItemSerializer(serializers.ModelSerializer):
     uuid = serializers.UUIDField(read_only=True)
     text = serializers.CharField(max_length=300, required=True)
@@ -20,6 +21,7 @@ class CheckListItemSerializer(serializers.ModelSerializer):
             'done',
             'check_list',
         ]
+
 
 class InnerCheckListItemSerializer(serializers.HyperlinkedModelSerializer):
     uuid = serializers.UUIDField()
