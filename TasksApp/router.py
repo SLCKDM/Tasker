@@ -5,5 +5,7 @@ from . import views
 
 router = DefaultRouter()
 router.register('tasks', views.TaskViewSet, 'tasks')
+router.register('checkitems', views.CheckListItemViewSet, 'checkitems')
+router.register('checklists', views.CheckListViewSet, 'checklists')
 
-urlpatterns = [path('', include(router.urls))]
+urlpatterns = [path('tasks/', include(router.urls))]

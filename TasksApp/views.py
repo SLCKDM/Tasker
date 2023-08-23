@@ -7,8 +7,8 @@ from django.views import generic
 from rest_framework import viewsets
 from rest_framework import permissions
 
-from . import models
 from . import serializers
+from . import models
 
 # Django views
 
@@ -31,4 +31,15 @@ class TaskDetail(generic.DetailView):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = models.Task.objects.all()
     serializer_class = serializers.TaskSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class CheckListItemViewSet(viewsets.ModelViewSet):
+    queryset = models.CheckListItem.objects.all()
+    serializer_class = serializers.CheckListItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class CheckListViewSet(viewsets.ModelViewSet):
+
+    queryset = models.CheckList.objects.all()
+    serializer_class = serializers.CheckListSerializer
     permission_classes = [permissions.IsAuthenticated]

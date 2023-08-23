@@ -5,30 +5,59 @@ from . import models
 
 class CheckListsStack(admin.StackedInline):
     model = models.CheckList
-    show_change_link=True
+    show_change_link = True
     extra = 0
 
 
 class CheckListsElementsStack(admin.TabularInline):
     model = models.CheckListItem
-    show_change_link=True
+    show_change_link = True
+    extra = 0
+
+
+class SubTasksElementsInlineStack(admin.StackedInline):
+    model = models.Task
+    show_change_link = True
     extra = 0
 
 
 class TaskAdmin(admin.ModelAdmin):
-    inlines = [CheckListsStack]
-    list_display = ['title', 'deadline', 'description', 'author', 'done',
-                    'done_dt']
-    fieldsets = [
-        ('Main', {'classes': ["extrapretty"],
-                  'fields': ['title', 'description']}),
-        ('Users', {'classes': ["extrapretty"],
-                   'fields': ['author', 'executors']}),
-        ('Dates', {'classes': ["extrapretty"],
-                   'fields': ['deadline', 'done', 'done_dt']}),
+    inlines = [
+        CheckListsStack,
+        SubTasksElementsInlineStack
     ]
-    list_filter = ['title', 'deadline', 'author', 'done', 'done_dt',
-                   'executors']
+    list_display = [
+        'title',
+        'deadline',
+        'description',
+        'author',
+        'done',
+        'done_dt'
+    ]
+    fieldsets = [
+        ('Main',
+         {
+            'classes': ["extrapretty"],
+            'fields': ['title', 'description', 'parent_task']
+        }),
+        ('Users',
+         {
+            'classes': ["extrapretty"],
+            'fields': ['author', 'executors']
+        }),
+        ('Dates',
+         {
+            'classes': ["extrapretty"],
+            'fields': ['deadline', 'done', 'done_dt']
+        }),
+    ]
+    list_filter = [
+        'deadline',
+        'author',
+        'done',
+        'done_dt',
+        'executors',
+    ]
     search_fields = ['title', 'description']
 
 
