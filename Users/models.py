@@ -2,6 +2,32 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models.query import QuerySet
+
+
+# Managers
+
+class ProfileManager(models.Manager):
+
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset()
+
+    def create(
+        self, user: dict, f_name: None | str = None, l_name: None | str = None,
+        group: None | dict = None
+    ) -> 'Profile':
+        new_user = User(**user)
+        new_user.save()
+        new_profile = Profile(f_name=f_name, l_name=l_name, group=group, user=user)
+        new_profile.save()
+        return new_profile
+
+# Models
+
+class CustomerUser(User):
+
+    def profile(self):
+        return Profile.objects.get(pk=self.pk)
 
 
 class Profile(models.Model):
@@ -12,6 +38,8 @@ class Profile(models.Model):
     l_name = models.CharField(max_length=100, blank=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True,
                               blank=True)
+
+    objects = ProfileManager()
 
     def username(self):
         return self.user.username

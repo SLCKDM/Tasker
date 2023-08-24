@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from . import models
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=100)
 
@@ -10,7 +10,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Group
         fields = ['id', 'name']
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(max_length=100)
     email = serializers.EmailField(allow_blank=True, max_length=100)
@@ -31,14 +31,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-    uuid = serializers.UUIDField(read_only=True)
     user = UserSerializer()
-    f_name = serializers.CharField(allow_blank=True, max_length=100)
-    l_name = serializers.CharField(allow_blank=True, max_length=100)
-
+    url = serializers.HyperlinkedIdentityField(
+        view_name='api:profiles-detail',
+        lookup_field='uuid',
+    )
     class Meta:
         model = models.Profile
         fields = [
+            'url',
             'uuid',
             'f_name',
             'l_name',
