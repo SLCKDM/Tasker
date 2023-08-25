@@ -45,3 +45,6 @@ class CheckListViewSet(viewsets.ModelViewSet):
     queryset = models.CheckList.objects.all()
     serializer_class = serializers.CheckListSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_context(self):
+        return {'request': self.request}
