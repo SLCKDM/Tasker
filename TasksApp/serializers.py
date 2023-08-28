@@ -1,40 +1,26 @@
-from cgitb import lookup
 from rest_framework import serializers
 from rest_framework import exceptions
 from rest_framework import status
+
 from . import models
 import Users.models
+import Tasker.serializers
 
 
-class MetadataExtensionSerializer(serializers.BaseSerializer):
-    detail_view = None
+class CurrentUserDefault():
+    requires_context = True
 
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        fields = getattr(self, 'fields')
-        if not self.detail_view:
-            raise AttributeError(f'`detail_view` name not provided in {type(self)}')
-        metadata = {
-            'url': fields['url'].get_url(instance, self.detail_view, request=self.context['request'], format=None),
-            'object_type': instance.__class__.__name__,
-            'mediatype': 'application/json',
-        }
-        data['metadata'] = metadata
-        data.pop('url')
-        for key in metadata:
-            if key in data:
-                data.pop(key)
-        return data
+    def __call__(self, field):
+        return field.context['request'].user
 
 
-class CheckListItemSerializer(MetadataExtensionSerializer, serializers.HyperlinkedModelSerializer):
+class CheckListItemSerializer(
+    serializers.HyperlinkedModelSerializer
+):
     detail_view = 'api:checkitems-detail'
 
-    url = serializers.HyperlinkedIdentityField(
-        view_name="api:checkitems-detail",
-        lookup_field="uuid",
-    )
-    check_list = serializers.HyperlinkedRelatedField(
+    meta = Tasker.serializers.MetadataField(view_name=detail_view)
+    check_list = Tasker.serializers.MetadataRelatedField(
         queryset = models.CheckList.objects.all(),
         view_name = "api:checklists-detail",
         lookup_field = "uuid"
@@ -42,7 +28,7 @@ class CheckListItemSerializer(MetadataExtensionSerializer, serializers.Hyperlink
     class Meta:
         model = models.CheckListItem
         fields = [
-            'url',
+            'meta',
             'uuid',
             'check_list',
             'text',
@@ -50,8 +36,12 @@ class CheckListItemSerializer(MetadataExtensionSerializer, serializers.Hyperlink
         ]
 
 
-class InnerCheckListItemSerializer(MetadataExtensionSerializer, serializers.HyperlinkedModelSerializer):
+class InnerCheckListItemSerializer(
+    serializers.HyperlinkedModelSerializer
+):
     detail_view = 'api:checkitems-detail'
+
+    meta = Tasker.serializers.MetadataField(view_name=detail_view)
     url = serializers.HyperlinkedIdentityField(
         view_name="api:checkitems-detail",
         lookup_field="uuid",
@@ -59,27 +49,39 @@ class InnerCheckListItemSerializer(MetadataExtensionSerializer, serializers.Hype
 
     class Meta:
         model = models.CheckListItem
-        fields = ['url', 'uuid', 'text', 'done']
+        fields = [
+            'meta',
+            'url',
+            'uuid',
+            'text',
+            'done'
+        ]
+        metadata_fields = ['url', 'object_type', 'object_type']
 
 
-class CheckListSerializer(MetadataExtensionSerializer, serializers.HyperlinkedModelSerializer):
+class CheckListSerializer(
+    serializers.HyperlinkedModelSerializer
+):
     detail_view = 'api:checklists-detail'
 
-    url = serializers.HyperlinkedIdentityField(
-        view_name=detail_view,
-        lookup_field="uuid",
+    meta = Tasker.serializers.MetadataField(view_name=detail_view)
+    task = Tasker.serializers.MetadataRelatedField(
+        view_name='api:tasks-detail',
+        many=False,
+        lookup_field='uuid',
+        queryset=models.Task.objects.all()
     )
-    task = serializers.HyperlinkedRelatedField(
-        queryset=models.Task.objects.all(),
-        view_name="api:tasks-detail",
-        lookup_field="uuid",
+    check_items = Tasker.serializers.MetadataRelatedField(
+        view_name='api:checkitems-detail',
+        many=True,
+        lookup_field='uuid',
+        queryset=models.Task.objects.all()
     )
-    check_items = InnerCheckListItemSerializer(many=True)
 
     class Meta:
         model = models.CheckList
         fields = [
-            'url',
+            'meta',
             'uuid',
             'name',
             'task',
@@ -87,7 +89,10 @@ class CheckListSerializer(MetadataExtensionSerializer, serializers.HyperlinkedMo
         ]
 
 
-class TaskSerializer(MetadataExtensionSerializer, serializers.ModelSerializer):
+class TaskSerializer(
+    # Tasker.serializers.MetadataExtensionSerializer,
+    serializers.ModelSerializer
+):
     '''
     Task model serializer
 
@@ -95,29 +100,61 @@ class TaskSerializer(MetadataExtensionSerializer, serializers.ModelSerializer):
     '''
     lookup_field: str = 'uuid'
     detail_view: str = 'api:tasks-detail'
+    users_qset = Users.models.Profile.objects.select_related().all()
+    meta = Tasker.serializers.MetadataField(view_name=detail_view)
 
-    url = serializers.HyperlinkedIdentityField(
-        view_name=detail_view,
-        lookup_field="uuid",
+    # check_lists = serializers.HyperlinkedRelatedField(
+    #     queryset=models.CheckList.objects.filter(task=None).all(),
+    #     many=True,
+    #     lookup_field = 'uuid',
+    #     view_name='api:checklists-detail'
+    # )
+    # author = serializers.HyperlinkedRelatedField(
+    #     queryset=users_qset,
+    #     lookup_field = 'uuid',
+    #     view_name='api:profiles-detail',
+    #     default=CurrentUserDefault
+    # )
+    # executors = serializers.HyperlinkedRelatedField(
+    #     queryset=users_qset,
+    #     lookup_field = 'uuid',
+    #     view_name='api:profiles-detail',
+    #     many=True,
+    # )
+
+    sub_tasks = Tasker.serializers.MetadataRelatedField(
+        view_name='api:tasks-detail',
+        many=True,
+        lookup_field=lookup_field,
+        read_only=True
     )
-    check_lists = serializers.HyperlinkedRelatedField(
-        queryset=models.CheckList.objects.all(),
+    parent_task = Tasker.serializers.MetadataRelatedField(
+        view_name='api:tasks-detail',
+        many=False,
+        lookup_field=lookup_field,
+        queryset=models.Task.objects.all()
+    )
+    check_lists = Tasker.serializers.MetadataRelatedField(
+        queryset=models.CheckList.objects.filter(task=None).all(),
         many=True,
         lookup_field = 'uuid',
         view_name='api:checklists-detail'
     )
-    author = serializers.HyperlinkedRelatedField(
-        queryset=Users.models.Profile.objects.all(),
+    author = Tasker.serializers.MetadataRelatedField(
+        queryset=users_qset,
         lookup_field = 'uuid',
         view_name='api:profiles-detail',
+        default=CurrentUserDefault
     )
-    executors = serializers.HyperlinkedRelatedField(
-        queryset=Users.models.Profile.objects.all(),
+    executors = Tasker.serializers.MetadataRelatedField(
+        queryset=users_qset,
         lookup_field = 'uuid',
         view_name='api:profiles-detail',
         many=True,
     )
 
+    def to_representation(self, instance):
+        return super().to_representation(instance)
 
     def update(self, instance: models.Task, validated_data: dict):
         '''
@@ -134,7 +171,7 @@ class TaskSerializer(MetadataExtensionSerializer, serializers.ModelSerializer):
     class Meta:
         model = models.Task
         fields = [
-            'url',
+            'meta',
             'uuid',
             'created',
             'updated',

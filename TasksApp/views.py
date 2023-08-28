@@ -1,3 +1,4 @@
+from os import pread
 from typing import Any
 
 from django.db import models
@@ -20,6 +21,7 @@ class Index(generic.ListView):
 
 class TaskDetail(generic.DetailView):
     model = models.Task
+
     template_name = 'TasksApp/detail.html'
     context_object_name = 'task'
 
@@ -30,21 +32,24 @@ class TaskDetail(generic.DetailView):
 
 class TaskViewSet(viewsets.ModelViewSet):
     lookup_field = "uuid"
-    queryset = models.Task.objects.all()
+    queryset = (models.Task.objects
+                .select_related('author__user')
+                .prefetch_related('sub_tasks', 'checklist_set', 'executors')
+                .all())
     serializer_class = serializers.TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class CheckListItemViewSet(viewsets.ModelViewSet):
     lookup_field = 'uuid'
-    queryset = models.CheckListItem.objects.all()
+    queryset = models.CheckListItem.objects.prefetch_related('check_list').all()
     serializer_class = serializers.CheckListItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class CheckListViewSet(viewsets.ModelViewSet):
     lookup_field = "uuid"
-    queryset = models.CheckList.objects.all()
+    queryset = (models.CheckList.objects
+                .prefetch_related('checklistitem_set')
+                .select_related('task')
+                .all())
     serializer_class = serializers.CheckListSerializer
     permission_classes = [permissions.IsAuthenticated]
-
-    def get_serializer_context(self):
-        return {'request': self.request}

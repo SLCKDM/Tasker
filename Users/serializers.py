@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+import Tasker.serializers
 
 class GroupSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -30,15 +31,20 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+class ProfileSerializer(
+    serializers.HyperlinkedModelSerializer
+):
+    detail_view = 'api:profiles-detail'
     user = UserSerializer()
+    meta = Tasker.serializers.MetadataField(view_name=detail_view)
     url = serializers.HyperlinkedIdentityField(
-        view_name='api:profiles-detail',
+        view_name=detail_view,
         lookup_field='uuid',
     )
     class Meta:
         model = models.Profile
         fields = [
+            'meta',
             'url',
             'uuid',
             'f_name',

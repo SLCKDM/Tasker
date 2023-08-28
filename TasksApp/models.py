@@ -27,15 +27,12 @@ class CheckListManager(models.Manager):
 
 class TaskManager(models.Manager):
 
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset()
-
     def create(self, **data):
         check_lists = data.pop('check_lists')
         new_task = Task(**data)
         new_task.save()
         for check_list in check_lists:
-            CheckList(**check_list, task=new_task.uuid).save()
+            check_list(task=new_task.uuid).save()
         return new_task
 
 
@@ -49,7 +46,7 @@ class Task(models.Model):
     deadline = models.DateTimeField()
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     done = models.BooleanField(default=False)
     done_dt = models.DateTimeField(null=True, blank=True)
     parent_task = models.ForeignKey(  # for subtasks to store Task pk
