@@ -7,9 +7,12 @@ from django.shortcuts import render
 from django.views import generic
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework import status
+from rest_framework.response import Response
 
 from . import serializers
 from . import models
+
 
 # Django views
 
@@ -30,14 +33,15 @@ class TaskDetail(generic.DetailView):
 
 # DRF views
 
-class TaskViewSet(viewsets.ModelViewSet):
+class TaskViewSet(viewsets.ModelViewSet,):
     lookup_field = "uuid"
     queryset = (models.Task.objects
                 .select_related('author__user')
-                .prefetch_related('sub_tasks', 'checklist_set', 'executors')
+                .prefetch_related('child_tasks', 'parent_task', 'check_lists', 'executors')
                 .all())
     serializer_class = serializers.TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
+
 
 class CheckListItemViewSet(viewsets.ModelViewSet):
     lookup_field = 'uuid'
@@ -45,10 +49,11 @@ class CheckListItemViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CheckListItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class CheckListViewSet(viewsets.ModelViewSet):
     lookup_field = "uuid"
     queryset = (models.CheckList.objects
-                .prefetch_related('checklistitem_set')
+                .prefetch_related('check_items')
                 .select_related('task')
                 .all())
     serializer_class = serializers.CheckListSerializer

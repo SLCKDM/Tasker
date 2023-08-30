@@ -24,7 +24,7 @@ class ProfileDetail(generic.DetailView):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     model = models.Profile
-    queryset = models.Profile.objects.select_related().prefetch_related().all()
+    queryset = models.Profile.objects.all()
     serializer_class = serializers.ProfileSerializer
     lookup_field = 'uuid'
     permission_classes = [permissions.IsAuthenticated]

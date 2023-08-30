@@ -20,11 +20,13 @@ from django.urls import path,include
 app_name = 'Tasker'
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
+    path("__debug__/", include("debug_toolbar.urls")),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path("api/", include("Tasker.router")),
     path("admin/", admin.site.urls),
     path('tasks/', include('TasksApp.urls')),
     path('profile/', include('Users.urls')),
-    path("__debug__/", include("debug_toolbar.urls")),
-    path("api/", include("Tasker.router")),
 ]
 
 urlpatterns

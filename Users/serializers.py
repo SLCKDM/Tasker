@@ -31,26 +31,22 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-class ProfileSerializer(
-    serializers.HyperlinkedModelSerializer
-):
-    detail_view = 'api:profiles-detail'
+class ProfileSerializer(serializers.ModelSerializer,):
     user = UserSerializer()
-    meta = Tasker.serializers.MetadataField(view_name=detail_view)
     url = serializers.HyperlinkedIdentityField(
-        view_name=detail_view,
-        lookup_field='uuid',
+        view_name="api:profiles-detail",
+        lookup_field="uuid",
     )
     class Meta:
         model = models.Profile
         fields = [
-            'meta',
             'url',
             'uuid',
             'f_name',
             'l_name',
             'user',
         ]
+
 
     def create(self, validated_data: dict) -> models.Profile:
         '''

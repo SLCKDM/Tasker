@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'djoser',
+    "debug_toolbar",
     'TasksApp.apps.TasksappConfig',
     'Users.apps.UsersConfig',
-    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -158,13 +159,24 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
     },
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('Bearer',),
 }

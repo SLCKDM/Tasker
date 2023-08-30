@@ -75,6 +75,7 @@
             <fieldset>
                 <legend>Участники</legend>
                 <div>Автор:</div><div>{{task.author}}</div>
+                <br>
                 <div>Исполнители:</div>{% for executor in task.executors.all %}<div>{{ executor }}</div>{% endfor %}
             </fieldset>
         </div>
@@ -84,18 +85,34 @@
                 <div >{{task.description}}</div>
             </fieldset>
 
-            <!-- <p>
-                <div>sub_tasks:</div><div>{{task.sub_tasks}}</div>
-            </p> -->
+            {% if task.parent_task %}
             <fieldset style="max-width: fit-content;">
-                <legend>Чек-листы</legend>
+                <legend>Родительская задача</legend>
+                <a href="{% url 'TasksApp:detail' task.parent_task.uuid %}">{{task.parent_task.title}}</a>
+            </fieldset>
+            {% endif %}
 
-                <div style="display: inline-block;">
-                    {% if task.checklist_set.all %}
-                        {% for checklist in task.checklist_set.all %}
+            {% if task.child_tasks.all %}
+            <fieldset style="max-width: fit-content;">
+                <legend>Связанные задачи</legend>
+                <ol style="margin-top: 0pt; padding-left: 0pt; margin-bottom: 0pt;">
+                    {% for child_task in task.child_tasks.all %}
+                    <li style="list-style-type: none;">
+                        <a href="{% url 'TasksApp:detail' child_task.uuid %}">{{child_task.title}}</a>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </fieldset>
+            {% endif %}
+
+            {% if task.check_lists.all %}
+                <fieldset style="max-width: fit-content;">
+                    <legend>Чек-листы</legend>
+                    <div style="display: inline-block;">
+                        {% for checklist in task.check_lists.all %}
                             <fieldset class="inner">
                             <legend>Чек-лист: {{ checklist.name }}</legend>
-                                {% for check_item in checklist.checklistitem_set.all %}
+                                {% for check_item in checklist.check_items.all %}
                                     <div>
                                         <input class="check-list-item" type="checkbox" {% if check_item.done %} checked {% endif %}>
                                         <li class="cl-item">{{ check_item.text }}</li>
@@ -103,9 +120,9 @@
                                 {% endfor %}
                             </fieldset>
                         {% endfor %}
-                    {% endif %}
-                </div>
-            </fieldset>
+                    </div>
+                </fieldset>
+            {% endif %}
         </div>
 
 
