@@ -8,7 +8,10 @@ from django.views import generic
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import status
+from rest_framework import filters
 from rest_framework.response import Response
+from rest_framework.schemas.openapi import AutoSchema
+from django_filters.rest_framework import DjangoFilterBackend
 
 from . import serializers
 from . import models
@@ -41,7 +44,17 @@ class TaskViewSet(viewsets.ModelViewSet,):
                 .all())
     serializer_class = serializers.TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
-
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    ordering_fields = ['title', 'created', 'updated', 'done_dt', 'deadline', 'done']
+    ordering = ['created']
+    search_fields = ['title', 'description']
+    filterset_fields = [
+        'title',
+        'author',
+        'executors',
+        'done',
+        'done_dt',
+    ]
 
 class CheckListItemViewSet(viewsets.ModelViewSet):
     lookup_field = 'uuid'

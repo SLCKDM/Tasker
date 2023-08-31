@@ -168,6 +168,6 @@ class TaskSerializer(
         ]
 
     def update(self, instance, validated_data):
-        if instance in validated_data['child_tasks']:
+        if instance in validated_data.get('child_tasks', []):
             raise ValidationError('Task can`t be subtask for itself', status.HTTP_406_NOT_ACCEPTABLE)
         return super().update(instance, validated_data)
