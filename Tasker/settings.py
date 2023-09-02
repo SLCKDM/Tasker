@@ -161,7 +161,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "formatter": "verbose",
-            "filename": BASE_DIR / 'Tasker' / 'logs' / '.log',
+            "filename": BASE_DIR / 'logs' / '.log',
         },
         "console": {
             "level": "INFO",
