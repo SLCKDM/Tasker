@@ -134,12 +134,14 @@ class TaskSerializer(
         view_name='api:tasks-detail',
         queryset=models.Task.objects.all(),
         lookup_field="uuid",
-        allow_null=True
+        allow_null=True,
+        required=False
     )
     author = serializers.HyperlinkedRelatedField(
         view_name='api:profiles-detail',
         queryset=Users.models.Profile.objects.all(),
-        lookup_field="uuid"
+        lookup_field="uuid",
+        required=False
     )
     executors = serializers.HyperlinkedRelatedField(
         view_name='api:profiles-detail',

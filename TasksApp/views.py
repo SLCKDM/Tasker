@@ -1,10 +1,12 @@
 from os import pread
 from typing import Any
+from django import http
 
 from django.db import models
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views import generic
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import status
@@ -12,24 +14,30 @@ from rest_framework import filters
 from rest_framework.response import Response
 from rest_framework.schemas.openapi import AutoSchema
 from django_filters.rest_framework import DjangoFilterBackend
-
+from django.utils.decorators import method_decorator
 from . import serializers
 from . import models
 
 
 # Django views
-
 class Index(generic.ListView):
     model = models.Task
     template_name = 'TasksApp/index.html'
     context_object_name = 'tasks'
 
+    @method_decorator(cache_page(60*2))
+    def dispatch(self, request, *args: Any, **kwargs: Any):
+        return super().dispatch(request, *args, **kwargs)
 
 class TaskDetail(generic.DetailView):
     model = models.Task
 
     template_name = 'TasksApp/detail.html'
     context_object_name = 'task'
+
+    @method_decorator(cache_page(60*2))
+    def dispatch(self, request, *args: Any, **kwargs: Any):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_object(self):
         return self.model.objects.get(pk=self.kwargs['pk'])
