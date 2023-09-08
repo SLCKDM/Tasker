@@ -1,16 +1,28 @@
 services:
+
+
   web:
-    build: ./
-    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    entrypoint:
+      - /backend/entrypoint-web.sh
+    # command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend/:/usr/src/backend/
     ports:
       - 8000:8000
+      - 8001:8001
     env_file:
       - ./.env.dev
     depends_on:
       - db
+      - redis
+
+
   db:
+    ports:
+      - 5432:5432
     image: postgres:12.0-alpine
     volumes:
       - postgres_volume:/var/lib/postgresql/data/
@@ -19,16 +31,28 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
 
-  # cache:
-  #   image: redis
-  #   restart: always
-  #   ports:
-  #     - '6379:6379'
-  #   command: redis-server
-  #   volumes:
-  #     - cache:/data
+
+  celery_worker:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    entrypoint:
+      - /backend/entrypoint-worker.sh
+    depends_on:
+      - redis
+      - web
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server
+    volumes:
+      - redis:/data
 
 volumes:
   postgres_volume:
-  # cache:
-  #   driver: local
+  redis:
+    driver: local

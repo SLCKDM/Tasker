@@ -16,6 +16,7 @@ while ! python manage.py migrate  2>&1; do
 done
 # python ./backend/manage.py loaddata ./backend/recipes/TasksAPp/initial_data.json
 python manage.py createsuperuser --noinput
-echo "Django docker is fully configured successfully."
 
-exec "$@"
+# FOR DEBUG
+python manage.py runserver 0.0.0.0:8000
+echo "Django is fully configured successfully and running."
